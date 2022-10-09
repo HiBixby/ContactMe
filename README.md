@@ -1,5 +1,7 @@
 # Contact me
 
+🚧 WIP
+
 설명
 
 * HiBixby와 연락을 하기 위한 Vue 웹사이트
