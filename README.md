@@ -1,24 +1,3 @@
-# contact-me
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Contact me
+* HiBixby와 contact을 하기 위한 Vue 웹사이트
+* 댓글을 쓰면 개발자의 디스코드 채널에 webhook 형태로 게시됨 (개발자만 볼수 있음)
