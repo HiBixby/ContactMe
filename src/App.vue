@@ -16,7 +16,7 @@
 
   <!-- Logo -->
 
-  <img class="mx-auto rounded-full border-slate-300 border-2" alt="HiBixby Logo" src="./assets/hibixby.jpg" />
+  <img class="mx-auto rounded-full border-slate-300 border-2" width=100 alt="HiBixby Logo" src="./assets/hibixby.jpg" />
 
   <div>
     <h1 class="font-bold text-3xl">{{ name }}</h1>
