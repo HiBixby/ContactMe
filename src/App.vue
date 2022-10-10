@@ -3,6 +3,11 @@
   <div>
     <h1>{{ name }}</h1>
   </div>
+  <form>
+    <input type="text"/>
+    <button type="submit">보내기</button>
+
+  </form>
 </template>
 
 <script>
