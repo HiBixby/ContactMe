@@ -37,7 +37,7 @@
       </p>
     </label>
     <button type="submit"
-      class="rounded-lg p-2 text-white bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300">보내기</button>
+      class="rounded-lg p-2 text-white bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"><i class="fa-solid fa-paper-plane"></i> 보내기</button>
   </form>
 </template>
 
