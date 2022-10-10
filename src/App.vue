@@ -15,15 +15,15 @@
   </div>
 
   <!-- Logo -->
-  <div>
-    <img alt="HiBixby Logo" src="./assets/hibixby.jpg" />
-  </div>
+
+  <img class="mx-auto rounded-full border-slate-300 border-2" alt="HiBixby Logo" src="./assets/hibixby.jpg" />
+
   <div>
     <h1 class="font-bold text-3xl">{{ name }}</h1>
   </div>
   <h4>HiBixby에게 Discord 알림 보내기</h4>
-  <hr/>
-  <br/>
+  <hr />
+  <br />
   <form>
     <label class="block">
       <span class="block text-sm font-medium text-slate-700">내용</span>
