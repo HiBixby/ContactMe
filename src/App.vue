@@ -27,6 +27,7 @@
           v-model.lazy="inputConfig.text"
           required
           v-bind:placeholder="inputConfig.placeholder"
+          v-bind:autocomplete="inputConfig.autocomplete"
         />
         <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
           {{ inputConfig.invalid }}
@@ -71,6 +72,7 @@ export default {
           placeholder: "ex) 홍길동",
           invalid: "이름을 입력해주세요.",
           text:"",
+          autocomplete:"",
         },
         {
           label: "내용",
@@ -78,6 +80,7 @@ export default {
           placeholder: "ex) 답장 부탁드립니다.",
           invalid: "내용을 입력해주세요.",
           text:"",
+          autocomplete:"off",
         },
       ],
     };
