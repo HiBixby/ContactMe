@@ -9,7 +9,7 @@
     <div>
       <h1 class="font-bold text-3xl">{{ owner }}</h1>
     </div>
-    <h4>HiBixby에게 Discord 알림 보내기</h4>
+    <p>{{owner}}에게 <i class="fa-brands fa-discord"></i>Discord 알림 보내기</p>
   </div>
 </template>
 
@@ -17,7 +17,11 @@
 export default {
   name: "HeadLine",
   props: {
-    owner: String,
+  },
+  data(){
+    return{
+      owner:"HiBixby",
+    };
   },
   methods: {},
 };
