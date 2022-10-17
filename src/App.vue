@@ -44,6 +44,9 @@
         내용을 입력해주세요.
       </p>
     </div>
+    <input id="remember" type="checkbox" v-model="remember" v-on:change="rememberMe" class="checked:bg-blue-500 ..." />
+    <label for="remember" class="">이름 기억하기 - WIP</label>
+    <br />
     <button
       type="submit"
       class="rounded-lg p-2 text-white bg-sky-500 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300"
@@ -62,8 +65,9 @@ export default {
   data() {
     return {
       owner: "HiBixby",
+      remember:false,
       success: false,
-      failure:false,
+      failure: false,
     };
   },
   components: { CustomAlert, HeadLine },
@@ -71,6 +75,15 @@ export default {
     dismissAlert: function () {
       console.log("dismiss alert!");
       this.success = false;
+    },
+    rememberMe: function(){
+      console.log(this.remember);
+      if (this.remember){
+        localStorage.setItem("name",this.name);
+      }
+      else{
+        localStorage.clear("name");
+      }
     },
     sendMessage: function () {
       console.log("[Send Message] : Called!");
@@ -108,8 +121,8 @@ export default {
         .catch((err) => {
           console.log(err);
           console.log("웹후크 전달 실패");
-          this.success=false;
-          this.failure=true;
+          this.success = false;
+          this.failure = true;
           alert("실패");
         });
     },
