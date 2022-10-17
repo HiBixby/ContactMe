@@ -55,7 +55,7 @@
       <br />
       <button
         type="submit"
-        class="rounded-lg p-2 text-white bg-sky-500 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300"
+        class="rounded-lg p-2 text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300 w-full"
       >
         <i class="fa-solid fa-paper-plane"></i> 보내기
       </button>
