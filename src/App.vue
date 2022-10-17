@@ -127,7 +127,7 @@ export default {
         .then((res) => {
           console.log(res);
           console.log("웹후크 전달 성공");
-          this.success = !this.success;
+          this.success = true;
         })
         .catch((err) => {
           console.log(err);
