@@ -1,5 +1,5 @@
 <template>
-  <div class="my-8 text-center">
+  <div class="my-5 text-center">
     <img
       class="mx-auto rounded-full border-slate-300 border-2"
       width="100"
