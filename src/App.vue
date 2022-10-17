@@ -7,10 +7,11 @@
 
   <!-- Logo -->
   <HeadLine v-bind:owner="owner"></HeadLine>
+  <hr />
 
   <!-- form -->
   <form v-on:submit.prevent="sendMessage">
-    <div class="px-3">
+    <div class="px-3 py-3">
       <label for="name" class="block text-sm font-medium text-slate-700">
         이름
       </label>
@@ -25,8 +26,7 @@
       <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
         이름을 입력해주세요.
       </p>
-    </div>
-    <div class="px-3">
+
       <label for="content" class="block text-sm font-medium text-slate-700"
         >내용</label
       >
@@ -43,16 +43,23 @@
       <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
         내용을 입력해주세요.
       </p>
+
+      <input
+        id="remember"
+        type="checkbox"
+        v-model="remember"
+        v-on:change="rememberMe"
+        class="checked:bg-blue-500 ..."
+      />
+      <label for="remember" class="">이름 기억하기 - WIP</label>
+      <br />
+      <button
+        type="submit"
+        class="rounded-lg p-2 text-white bg-sky-500 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300"
+      >
+        <i class="fa-solid fa-paper-plane"></i> 보내기
+      </button>
     </div>
-    <input id="remember" type="checkbox" v-model="remember" v-on:change="rememberMe" class="checked:bg-blue-500 ..." />
-    <label for="remember" class="">이름 기억하기 - WIP</label>
-    <br />
-    <button
-      type="submit"
-      class="rounded-lg p-2 text-white bg-sky-500 hover:bg-sky-600 active:bg-sky-700 focus:outline-none focus:ring focus:ring-sky-300"
-    >
-      <i class="fa-solid fa-paper-plane"></i> 보내기
-    </button>
   </form>
 </template>
 
@@ -65,7 +72,7 @@ export default {
   data() {
     return {
       owner: "HiBixby",
-      remember:false,
+      remember: false,
       success: false,
       failure: false,
     };
@@ -76,12 +83,11 @@ export default {
       console.log("dismiss alert!");
       this.success = false;
     },
-    rememberMe: function(){
+    rememberMe: function () {
       console.log(this.remember);
-      if (this.remember){
-        localStorage.setItem("name",this.name);
-      }
-      else{
+      if (this.remember) {
+        localStorage.setItem("name", this.name);
+      } else {
         localStorage.clear("name");
       }
     },
@@ -139,8 +145,6 @@ export default {
     "Malgun Gothic", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
