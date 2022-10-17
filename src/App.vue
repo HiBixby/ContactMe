@@ -128,6 +128,7 @@ export default {
           console.log(res);
           console.log("웹후크 전달 성공");
           this.success = true;
+          this.content = "";
         })
         .catch((err) => {
           console.log(err);
