@@ -22,7 +22,7 @@
         ></path>
       </svg>
       메세지 전송 성공!
-      <button class="ml-auto">
+      <button v-on:click="dismissAlert" class="ml-auto">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="fill-current text-gray-700"
@@ -111,6 +111,10 @@ export default {
   },
   components: {},
   methods: {
+    dismissAlert: function () {
+      console.log("dismiss alert!");
+      this.success = false;
+    },
     sendMessage: function () {
       console.log("[Send Message] : Called!");
       let embeds = [
