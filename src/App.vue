@@ -24,7 +24,7 @@
           v-bind:id="inputConfig.id"
           type="text"
           class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-          v-model.lazy="name"
+          v-model.lazy="inputConfig.text"
           required
           v-bind:placeholder="inputConfig.placeholder"
         />
@@ -70,12 +70,14 @@ export default {
           id: "name",
           placeholder: "ex) 홍길동",
           invalid: "이름을 입력해주세요.",
+          text:"",
         },
         {
           label: "내용",
           id: "context",
           placeholder: "ex) 답장 부탁드립니다.",
           invalid: "내용을 입력해주세요.",
+          text:"",
         },
       ],
     };
@@ -89,7 +91,7 @@ export default {
     rememberMe: function () {
       console.log(this.remember);
       if (this.remember) {
-        localStorage.setItem("name", this.name);
+        localStorage.setItem("name", this.inputConfigs[0].text);
       } else {
         localStorage.clear("name");
       }
@@ -107,7 +109,7 @@ export default {
           fields: [
             {
               name: "내용",
-              value: this.content,
+              value: this.inputConfigs[1].text,
             },
           ],
         },
