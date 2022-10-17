@@ -23,7 +23,7 @@
         <input
           v-bind:id="inputConfig.id"
           type="text"
-          class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
           v-model.lazy="inputConfig.text"
           required
           v-bind:placeholder="inputConfig.placeholder"
@@ -62,7 +62,7 @@ export default {
   name: "App",
   data() {
     return {
-      remember: localStorage.getItem("name")?true:false,
+      remember: localStorage.getItem("name") ? true : false,
       success: false,
       failure: false,
       inputConfigs: [
@@ -71,16 +71,18 @@ export default {
           id: "name",
           placeholder: "ex) 홍길동",
           invalid: "이름을 입력해주세요.",
-          text:localStorage.getItem("name")?localStorage.getItem("name"):"",
-          autocomplete:"",
+          text: localStorage.getItem("name")
+            ? localStorage.getItem("name")
+            : "",
+          autocomplete: "",
         },
         {
           label: "내용",
           id: "context",
           placeholder: "ex) 답장 부탁드립니다.",
           invalid: "내용을 입력해주세요.",
-          text:"",
-          autocomplete:"off",
+          text: "",
+          autocomplete: "off",
         },
       ],
     };
