@@ -63,6 +63,7 @@ export default {
     return {
       owner: "HiBixby",
       success: false,
+      failure:false,
     };
   },
   components: { CustomAlert, HeadLine },
@@ -107,6 +108,8 @@ export default {
         .catch((err) => {
           console.log(err);
           console.log("웹후크 전달 실패");
+          this.success=false;
+          this.failure=true;
           alert("실패");
         });
     },

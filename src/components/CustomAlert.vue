@@ -20,7 +20,8 @@
           d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
         ></path>
       </svg>
-      메세지 전송 성공!
+      <div v-if="success">메세지 전송 성공!</div>
+      <div v-else-if="failure">메세지 전송 실패!</div>
       <button v-on:click="dismissAlert" class="ml-auto">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +45,11 @@ export default {
   name: "CustomAlert",
   props: {
     success: Boolean,
+    failure: Boolean,
   },
   methods: {
     dismissAlert: function () {
-      console.log("hello");
+      console.log("dismiss alert from component");
       this.$emit("dismissAlert");
     },
   },
