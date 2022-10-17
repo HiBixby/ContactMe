@@ -107,7 +107,7 @@ export default {
           timestamp: new Date(),
           color: 1752220,
           footer: {
-            text: `👤${this.name}`,
+            text: `👤${this.inputConfigs[0].text}`,
           },
           fields: [
             {
