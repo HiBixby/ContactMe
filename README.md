@@ -17,3 +17,4 @@ https://hibixby.github.io/ContactMe_vue/dist/
 ### 추가하고 싶은 기능
 - [ ] 다크모드
 - [ ] 비밀글
+- [ ] 영어 지원
