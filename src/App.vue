@@ -2,7 +2,7 @@
   <!-- Success alert -->
   <div class="alert-container w-full px-5">
     <div
-      :class="{'hidden': !success }"
+      :class="{ hidden: !success }"
       class="bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-green-700 inline-flex items-center w-full"
       role="alert"
     >
@@ -35,32 +35,47 @@
   />
 
   <div>
-    <h1 class="font-bold text-3xl">{{ name }}</h1>
+    <h1 class="font-bold text-3xl">{{ owner }}</h1>
   </div>
   <h4>HiBixby에게 Discord 알림 보내기</h4>
   <hr />
   <br />
   <!-- form -->
   <form v-on:submit.prevent="sendMessage">
-    <label class="block">
+    <div class="px-3">
+      <label for="name" class="block text-sm font-medium text-slate-700">
+        이름
+      </label>
+      <input
+        id="name"
+        type="text"
+        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+        v-model.lazy="name"
+        required
+        placeholder="홍길동"
+      />
+      <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+        이름을 입력해주세요.
+      </p>
+    </div>
+    <div class="px-3">
       <label for="content" class="block text-sm font-medium text-slate-700"
         >내용</label
       >
-      <div class="px-3">
-        <input
-          id="content"
-          type="text"
-          class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-          autocomplete="off"
-          v-model.lazy="content"
-          placeholder="안녕하세요!"
-          required
-        />
-      </div>
+      <input
+        id="content"
+        type="text"
+        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+        autocomplete="off"
+        v-model.lazy="content"
+        placeholder="안녕하세요!"
+        required
+      />
+
       <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
         내용을 입력해주세요.
       </p>
-    </label>
+    </div>
     <button
       type="submit"
       class="rounded-lg p-2 text-white bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
@@ -76,49 +91,49 @@ export default {
   name: "App",
   data() {
     return {
-      name: "HiBixby",
+      owner: "HiBixby",
       success: false,
     };
   },
   components: {},
   methods: {
     sendMessage: function () {
-        console.log("실행됨");
-        let embeds = [
-          {
-            title: "Contact Me (Vue.js)",
-            timestamp: new Date(),
-            color: 1752220,
-            footer: {
-              text: "📅",
-            },
-            fields: [
-              {
-                name: "내용",
-                value: this.content,
-              },
-            ],
+      console.log("[Send Message] : Called!");
+      let embeds = [
+        {
+          title: "Contact Me (Vue.js)",
+          timestamp: new Date(),
+          color: 1752220,
+          footer: {
+            text: `👤${this.name}`,
           },
-        ];
-        let data = JSON.stringify({ embeds });
-        const webhook = process.env.VUE_APP_WEBHOOK_URL;
-        var config = {
-          method: "POST",
-          url: webhook,
-          headers: { "Content-Type": "application/json" },
-          data: data,
-        };
-        axios(config)
-          .then((res) => {
-            console.log(res);
-            console.log("웹후크 전달 성공");
-            this.success = !this.success;
-          })
-          .catch((err) => {
-            console.log(err);
-            console.log("웹후크 전달 실패");
-            alert("실패");
-          });
+          fields: [
+            {
+              name: "내용",
+              value: this.content,
+            },
+          ],
+        },
+      ];
+      let data = JSON.stringify({ embeds });
+      const webhook = process.env.VUE_APP_WEBHOOK_URL;
+      var config = {
+        method: "POST",
+        url: webhook,
+        headers: { "Content-Type": "application/json" },
+        data: data,
+      };
+      axios(config)
+        .then((res) => {
+          console.log(res);
+          console.log("웹후크 전달 성공");
+          this.success = !this.success;
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("웹후크 전달 실패");
+          alert("실패");
+        });
     },
   },
 };
