@@ -6,7 +6,7 @@
   ></CustomAlert>
 
   <!-- Logo -->
-  <HeadLine v-bind:owner="owner"></HeadLine>
+  <HeadLine></HeadLine>
   <hr />
 
   <!-- form -->
@@ -41,7 +41,7 @@
         v-on:change="rememberMe"
         class="checked:bg-blue-500 ..."
       />
-      <label for="remember" class="">이름 기억하기 - WIP</label>
+      <label for="remember" class="">이름 기억하기</label>
       <br />
       <button
         type="submit"
@@ -57,12 +57,12 @@
 import axios from "axios";
 import CustomAlert from "./components/CustomAlert.vue";
 import HeadLine from "./components/HeadLine.vue";
+
 export default {
   name: "App",
   data() {
     return {
-      owner: "HiBixby",
-      remember: false,
+      remember: localStorage.getItem("name")?true:false,
       success: false,
       failure: false,
       inputConfigs: [
@@ -71,7 +71,7 @@ export default {
           id: "name",
           placeholder: "ex) 홍길동",
           invalid: "이름을 입력해주세요.",
-          text:"",
+          text:localStorage.getItem("name")?localStorage.getItem("name"):"",
           autocomplete:"",
         },
         {
