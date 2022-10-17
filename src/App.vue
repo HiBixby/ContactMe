@@ -6,20 +6,8 @@
   ></CustomAlert>
 
   <!-- Logo -->
+  <HeadLine v-bind:owner="owner"></HeadLine>
 
-  <img
-    class="mx-auto rounded-full border-slate-300 border-2"
-    width="100"
-    alt="HiBixby Logo"
-    src="./assets/hibixby.jpg"
-  />
-
-  <div>
-    <h1 class="font-bold text-3xl">{{ owner }}</h1>
-  </div>
-  <h4>HiBixby에게 Discord 알림 보내기</h4>
-  <hr />
-  <br />
   <!-- form -->
   <form v-on:submit.prevent="sendMessage">
     <div class="px-3">
@@ -68,6 +56,7 @@
 <script>
 import axios from "axios";
 import CustomAlert from "./components/CustomAlert.vue";
+import HeadLine from "./components/HeadLine.vue";
 export default {
   name: "App",
   data() {
@@ -76,7 +65,7 @@ export default {
       success: false,
     };
   },
-  components: { CustomAlert },
+  components: { CustomAlert, HeadLine },
   methods: {
     dismissAlert: function () {
       console.log("dismiss alert!");
