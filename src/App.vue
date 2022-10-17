@@ -12,37 +12,26 @@
   <!-- form -->
   <form v-on:submit.prevent="sendMessage">
     <div class="px-3 py-3">
-      <label for="name" class="block text-sm font-medium text-slate-700">
-        이름
-      </label>
-      <input
-        id="name"
-        type="text"
-        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-        v-model.lazy="name"
-        required
-        placeholder="ex) 홍길동"
-      />
-      <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-        이름을 입력해주세요.
-      </p>
-
-      <label for="content" class="block text-sm font-medium text-slate-700"
-        >내용</label
-      >
-      <input
-        id="content"
-        type="text"
-        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-        autocomplete="off"
-        v-model.lazy="content"
-        placeholder="ex) 안녕하세요!"
-        required
-      />
-
-      <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-        내용을 입력해주세요.
-      </p>
+      <!-- text inputs start -->
+      <div v-for="inputConfig in inputConfigs" :key="inputConfig">
+        <label
+          v-bind:ref_for="inputConfig.id"
+          class="block text-sm font-medium text-slate-700"
+        >
+          {{ inputConfig.label }}
+        </label>
+        <input
+          v-bind:id="inputConfig.id"
+          type="text"
+          class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          v-model.lazy="name"
+          required
+          v-bind:placeholder="inputConfig.placeholder"
+        />
+        <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+          {{ inputConfig.invalid }}
+        </p>
+      </div>
 
       <input
         id="remember"
@@ -75,6 +64,20 @@ export default {
       remember: false,
       success: false,
       failure: false,
+      inputConfigs: [
+        {
+          label: "이름",
+          id: "name",
+          placeholder: "ex) 홍길동",
+          invalid: "이름을 입력해주세요.",
+        },
+        {
+          label: "내용",
+          id: "context",
+          placeholder: "ex) 답장 부탁드립니다.",
+          invalid: "내용을 입력해주세요.",
+        },
+      ],
     };
   },
   components: { CustomAlert, HeadLine },
