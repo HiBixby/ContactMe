@@ -2,6 +2,7 @@
   <!-- Success alert -->
   <div class="alert-container w-full px-5">
     <div
+      :class="{'hidden': !success }"
       class="bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-green-700 inline-flex items-center w-full"
       role="alert"
     >
@@ -20,7 +21,7 @@
           d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
         ></path>
       </svg>
-      메세지 전송 성공! - 아직 작업중인 페이지 입니다.
+      메세지 전송 성공!
     </div>
   </div>
 
@@ -51,8 +52,9 @@
           type="text"
           class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           autocomplete="off"
-          v-model="content"
+          v-model.lazy="content"
           placeholder="안녕하세요!"
+          required
         />
       </div>
       <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
@@ -75,12 +77,12 @@ export default {
   data() {
     return {
       name: "HiBixby",
+      success: false,
     };
   },
   components: {},
   methods: {
     sendMessage: function () {
-      if (this.content) {
         console.log("실행됨");
         let embeds = [
           {
@@ -110,16 +112,13 @@ export default {
           .then((res) => {
             console.log(res);
             console.log("웹후크 전달 성공");
-            alert("성공");
+            this.success = !this.success;
           })
           .catch((err) => {
             console.log(err);
             console.log("웹후크 전달 실패");
             alert("실패");
           });
-      } else {
-        alert("내용을 입력하세요");
-      }
     },
   },
 };
