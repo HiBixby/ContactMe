@@ -6,43 +6,33 @@
   ></CustomAlert>
 
   <!-- Logo -->
-  <HeadLine v-bind:owner="owner"></HeadLine>
+  <HeadLine></HeadLine>
   <hr />
 
   <!-- form -->
   <form v-on:submit.prevent="sendMessage">
     <div class="px-3 py-3">
-      <label for="name" class="block text-sm font-medium text-slate-700">
-        이름
-      </label>
-      <input
-        id="name"
-        type="text"
-        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-        v-model.lazy="name"
-        required
-        placeholder="ex) 홍길동"
-      />
-      <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-        이름을 입력해주세요.
-      </p>
-
-      <label for="content" class="block text-sm font-medium text-slate-700"
-        >내용</label
-      >
-      <input
-        id="content"
-        type="text"
-        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-        autocomplete="off"
-        v-model.lazy="content"
-        placeholder="ex) 안녕하세요!"
-        required
-      />
-
-      <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-        내용을 입력해주세요.
-      </p>
+      <!-- text inputs start -->
+      <div v-for="inputConfig in inputConfigs" :key="inputConfig">
+        <label
+          v-bind:ref_for="inputConfig.id"
+          class="block text-sm font-medium text-slate-700"
+        >
+          {{ inputConfig.label }}
+        </label>
+        <input
+          v-bind:id="inputConfig.id"
+          type="text"
+          class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          v-model.lazy="inputConfig.text"
+          required
+          v-bind:placeholder="inputConfig.placeholder"
+          v-bind:autocomplete="inputConfig.autocomplete"
+        />
+        <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+          {{ inputConfig.invalid }}
+        </p>
+      </div>
 
       <input
         id="remember"
@@ -51,7 +41,7 @@
         v-on:change="rememberMe"
         class="checked:bg-blue-500 ..."
       />
-      <label for="remember" class="">이름 기억하기 - WIP</label>
+      <label for="remember" class="">이름 기억하기</label>
       <br />
       <button
         type="submit"
@@ -67,14 +57,32 @@
 import axios from "axios";
 import CustomAlert from "./components/CustomAlert.vue";
 import HeadLine from "./components/HeadLine.vue";
+
 export default {
   name: "App",
   data() {
     return {
-      owner: "HiBixby",
-      remember: false,
+      remember: localStorage.getItem("name")?true:false,
       success: false,
       failure: false,
+      inputConfigs: [
+        {
+          label: "이름",
+          id: "name",
+          placeholder: "ex) 홍길동",
+          invalid: "이름을 입력해주세요.",
+          text:localStorage.getItem("name")?localStorage.getItem("name"):"",
+          autocomplete:"",
+        },
+        {
+          label: "내용",
+          id: "context",
+          placeholder: "ex) 답장 부탁드립니다.",
+          invalid: "내용을 입력해주세요.",
+          text:"",
+          autocomplete:"off",
+        },
+      ],
     };
   },
   components: { CustomAlert, HeadLine },
@@ -86,7 +94,7 @@ export default {
     rememberMe: function () {
       console.log(this.remember);
       if (this.remember) {
-        localStorage.setItem("name", this.name);
+        localStorage.setItem("name", this.inputConfigs[0].text);
       } else {
         localStorage.clear("name");
       }
@@ -104,7 +112,7 @@ export default {
           fields: [
             {
               name: "내용",
-              value: this.content,
+              value: this.inputConfigs[1].text,
             },
           ],
         },
@@ -122,7 +130,7 @@ export default {
           console.log(res);
           console.log("웹후크 전달 성공");
           this.success = true;
-          this.content = "";
+          this.inputConfigs[1].text = "";
         })
         .catch((err) => {
           console.log(err);
