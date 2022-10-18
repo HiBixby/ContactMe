@@ -13,26 +13,33 @@
   <form v-on:submit.prevent="sendMessage">
     <div class="px-3 py-3">
       <!-- text inputs start -->
-      <div v-for="inputConfig in inputConfigs" :key="inputConfig">
-        <label
-          v-bind:ref_for="inputConfig.id"
-          class="block text-sm font-medium text-slate-700"
-        >
-          {{ inputConfig.label }}
-        </label>
-        <input
-          v-bind:id="inputConfig.id"
-          type="text"
-          class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-          v-model.lazy="inputConfig.text"
-          required
-          v-bind:placeholder="inputConfig.placeholder"
-          v-bind:autocomplete="inputConfig.autocomplete"
-        />
-        <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
-          {{ inputConfig.invalid }}
-        </p>
-      </div>
+      <label ref_for="name" class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
+        이름
+      </label>
+      <input
+        id="name"
+        type="text"
+        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        v-model.lazy="name"
+        required
+        placeholder="ex) 홍길동"
+      />
+      <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+        이름을 입력해주세요.
+      </p>
+      <label ref_for="message" class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
+        내용
+      </label>
+      <textarea
+        id="message"
+        class="peer mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+        v-model.lazy="message"
+        required
+      ></textarea>
+      <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+        내용을 입력해주세요.
+      </p>
+      <br />
 
       <input
         id="remember"
@@ -65,26 +72,8 @@ export default {
       remember: localStorage.getItem("name") ? true : false,
       success: false,
       failure: false,
-      inputConfigs: [
-        {
-          label: "이름",
-          id: "name",
-          placeholder: "ex) 홍길동",
-          invalid: "이름을 입력해주세요.",
-          text: localStorage.getItem("name")
-            ? localStorage.getItem("name")
-            : "",
-          autocomplete: "",
-        },
-        {
-          label: "내용",
-          id: "context",
-          placeholder: "ex) 답장 부탁드립니다.",
-          invalid: "내용을 입력해주세요.",
-          text: "",
-          autocomplete: "off",
-        },
-      ],
+      name: localStorage.getItem("name") ? localStorage.getItem("name") : "",
+      message: "",
     };
   },
   components: { CustomAlert, HeadLine },
@@ -96,7 +85,7 @@ export default {
     rememberMe: function () {
       console.log(this.remember);
       if (this.remember) {
-        localStorage.setItem("name", this.inputConfigs[0].text);
+        localStorage.setItem("name", this.name);
       } else {
         localStorage.clear("name");
       }
@@ -109,12 +98,12 @@ export default {
           timestamp: new Date(),
           color: 1752220,
           footer: {
-            text: `👤${this.inputConfigs[0].text}`,
+            text: `👤${this.name}`,
           },
           fields: [
             {
               name: "내용",
-              value: this.inputConfigs[1].text,
+              value: this.message,
             },
           ],
         },
@@ -132,7 +121,7 @@ export default {
           console.log(res);
           console.log("웹후크 전달 성공");
           this.success = true;
-          this.inputConfigs[1].text = "";
+          this.message = "";
         })
         .catch((err) => {
           console.log(err);
