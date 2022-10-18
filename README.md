@@ -1,5 +1,11 @@
 # Contact me
 
+Vue 3.2.13
+axios
+discord webhook
+tailwind
+bootstrap
+
 🚧 WIP
 demo
 https://hibixby.github.io/ContactMe_vue/dist/
