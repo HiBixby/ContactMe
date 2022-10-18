@@ -1,10 +1,10 @@
 # Contact me
 
-Vue 3.2.13
-axios
-discord webhook
-tailwind
-bootstrap
+* Vue 3.2.13
+* axios
+* discord webhook
+* tailwind
+* bootstrap
 
 🚧 WIP
 demo
