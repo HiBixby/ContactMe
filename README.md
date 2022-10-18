@@ -1,5 +1,7 @@
 # Contact me
 
+Stacks
+
 * Vue 3.2.13
 * axios
 * discord webhook
