@@ -12,7 +12,7 @@ Stacks
 demo
 https://hibixby.github.io/ContactMe_vue/dist/
 
-![image](https://user-images.githubusercontent.com/66160055/196140972-22f65edd-c459-4811-ab4a-34692a640623.png)
+![image](https://user-images.githubusercontent.com/66160055/196343607-69d280c5-3503-412c-9f12-21f3c1b3bbea.png)
 
 설명
 
