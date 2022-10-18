@@ -2,7 +2,7 @@
   <div class="my-5 text-center">
     <img
       class="mx-auto rounded-full border-slate-300 border-2 w-28"
-      alt="HiBixby Logo"
+      alt="HiBixby의 프로필 이미지"
       src="../assets/hibixby.jpg"
     />
 
