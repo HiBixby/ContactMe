@@ -8,6 +8,8 @@
 * tailwind
 * bootstrap
 
+실제 작동하지만 버그가 있을 수 있습니다.
+
 🚧 WIP
 demo
 https://hibixby.github.io/ContactMe_vue/dist/
