@@ -12,7 +12,7 @@
 
 🚧 WIP
 demo
-https://hibixby.github.io/ContactMe_vue/dist/
+https://hibixby.github.io/ContactMe_vue
 
 ![image](https://user-images.githubusercontent.com/66160055/196343705-b72daa0f-3ca7-4686-9571-f5617b4bb73b.png)
 
